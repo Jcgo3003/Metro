@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"/>
+
+        <link href="/static/styles.css" rel="stylesheet"/>
+
+        <title>Estado del Metro</title>
+
+    </head>
+<body>
+
+        <!-- Barra de navegacion -->
+        <nav class="navbar fixed-top navbar-dark bg-dark">
+  <span class="navbar-brand">
+      Estado del Metro
+    </span>
+      <img src="/static/metro.png" width="140" height="35" class="d-inline-block align-top " alt="metro">
+</nav>
+
+        <div class="container-fluid">
+            {% block body %}{% endblock %}
+        </div>
+
+    </body>
+</html>

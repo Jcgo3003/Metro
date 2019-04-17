@@ -1,0 +1,70 @@
+/* fill viewport, hide scroll bar */
+html, body
+{
+    height: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+/* fill viewport */
+div.container-fluid, .jumbotron
+{
+    height: 100%;
+}
+
+/* ensure content is below navbar */
+div.container-fluid
+{
+    padding-top: 100px;
+}
+
+/* remove padding within container */
+div.container-fluid
+{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* fill viewport */
+div.container-fluid, .jumbotron
+{
+    height: 100%;
+}
+
+/* split viewport */
+div.row
+{
+    height: 50%;
+    margin-left: 0;
+    margin-right: 0;
+    overflow: scroll;
+}
+
+/*Texto centrado index*/
+.let_linea{
+    font-size: 20px;
+    text-align: center;
+}
+
+/*Texto de dir*/
+.let_dir{
+    font-size: 16px;
+    text-align: center;
+}
+
+/*centrando img de estado*/
+.imagen {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*Txt de hasta abajo*/
+.abajo{
+       position: fixed;
+       text-align: center;
+       bottom: 0px;
+       width: 100%;
+       color: #6e6e6e;
+       font-size: 10px;
+}

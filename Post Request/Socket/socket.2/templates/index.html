@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title> State of colors </title>
+  </head>
+<body>
+    <p> The color state is  </p>
+     <!--Conecting the results from function /read -->
+    <p> <span id=results>  ---  </span> </p>
+
+    <!--   json jquery  -  AJAX -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    <script type=text/javascript>
+        function colors() {
+            $.getJSON('/read'
+            ,
+            // Getting the updated color
+            function(data) {
+                // conecting results to jsonify
+                $("#results").text(data.color);
+            });
+            // Updating every 2 secons
+            setTimeout(function() {
+                        colors();
+            }, 2000);
+        }
+        // Starting on load
+        window.onload = colors;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,257 @@
+Tengo que hacer que los sensores manden la informacion de la siguiente manera
+Los datos que enviaran los sensores para ser introducidos en la base de datos seran
+
+direccion:          ejem    'a' o 'b'
+sen_n:      ejem    'sen1_a'
+num:             ejem    '1' este numero tiene que ser igual al que esta alla arriva
+
+ # Direccion se guarda en dir
+    dir = input("Direccion: ")
+    ## Sensor guarda el nombre completo del sensor sen1_a
+    sensor = input("Sensor numero: ")# ejem... sen1_a
+    # num_sen guarda el numero de ese sensor
+    num_sen = int(input("Numero: "))
+
+Utilizar a flask para que haga los registros en una bd
+revisar request.1 para ver como implementar bd con flask
+reviasr request para ver como obtener datos de los requestsolo
+
+Los cambios los hare en resquesolo.1, implementare todo el programa de bdfinal 7 dentro de esa aplicacion flask
+
+
+31 julio 2018
+
+Problemas
+1 - Una vez iniciado esa aplicacion no se apagara en ningun momento, pero mi aplicacion flask si
+    Es decir corro flask y cada vez que reciba su post request practicamente se reiniciara desde el princio
+    Por lo que mi aplicacion de flask rapidamente debe poder aceptar comenzar de nuevo sin borrar nada y manteniendo sus datos
+
+2 - Otra cosa que se me ocurre que solo debe admitir una entrada por vez en cada ocacion a esa api, y si entrara otra en ese momento
+    Se deberia poner en espera hasta que el ultimo registro sea completado
+
+
+La aplicacion api se encargara de introducir los datos en la bd final, que eso es justo lo que necesito
+Ahora necesito hacer una funcion aparte o dentro de la misma tome esos datos recabados en la bd y que hagas sus promedios
+Pero no se si hacer que esta funcion la haga en automatico o mejor que alguien la accione si alguien la va accionar
+se necesitara una pagina de administrador y desde esa pagina activar la  lectura de los datos de la bd
+
+
+
+PARA LA PRESENTACION SE ME OCURRE TENER LISTO YA UN ARCHIVO DE BD PARA QUE ESTA FUNCION LA LEA
+Por lo que esta aplicacion debe tener la habilidad de leer los archivos de la base de ese dia asi como los que
+yo le ordene ademas de que debe permirtir mirar los resultados antes de enviarlos a mi aplicacion principal de
+EL ESTADO DEL METRO,    E incluso de ser posible me deberia dejar introducir los datos directamente a esta
+aplicacion y asi controlar el temporisador de esta aplicacion a mi antojo
+
+Conclusiones:
+Termine el requestsolo.1 que se encargara de llevar solamente los registros de la bd
+    Para luego queda implementar una funcion pagina dentro de ese flask que se encargue de tomar
+    los datos de la bd, los lea y saque un promedio  del tiempo que tardan los trenes en llegar
+    dicha funcion me debe dejar ver esos promedios y si quiero modificarlos para despues entregarlos
+    a   EL ESTADO DEL METRO
+
+    Para mas adelante tengo que lograr hacer que esa misma funcion nes, despues de hacer el registro en la bd
+    mande llamar a la aplicacion de EL ESTADO DEL METRO, que sera el temporisador que mostrara los datos en linea
+    a los usuarios
+
+    EL ESTADO DEL METRO recibira datos sobre los tiempos de la primera funcion y de la segunda los datos en tiempo
+    real de los sensores, dicha funcion debe ser lista y por decirlo asi comenzar con su cuenta no cuando reciba los
+    datos de la primer funcion si no mas bien cuando la segunda funcion replique el primer  sensor de cada
+    direccion.
+
+1 Agosto
+    Termine la pagina del login
+    Admin.html - Funciones
+    habra dos espacios
+        1 Mostrara los sensores que estan en linea
+            Estara en la pagina principal y no habra mas opciones
+            solo mostrara los sensores que ya se conectaron y a que hora
+            ------ Para hacer esto necesito crear una pequena funcion en nes ---
+                Esta funcion enviara los datos que envien los sensores una vez pasados 30 segundos
+                Y Dentro de esta app debe poder recibir estos datos y mostrarlos si es posible sin actualizara
+
+
+        2 Obtener los datos de la bd
+            Va a ser un boton que llame a una funcion y probablemente dirija a otra pagina
+                    Otra pagina
+                Mostrara los promedios y preguntara si quiere comenzar la ejecucion de EL ESTADO DEL METRO
+                        Pero tambien habra una ultima opcion para detener todo el programa
+
+Conclusiones:
+    Solo termine el sistema de login aun queda mucho camino por delante
+    Pero ya pase la funcion de registro y la funcion de lectura de bd a helpers.py
+        haciendo que el applications.py sea mucho mas rapido a la hora de leer y entender
+
+    Continuar con Admin.1
+        hasta ahora comprobe que sirve la funcion nes, o sea la funcion regis en helpers.py
+
+Para manana continuar con las funciones de lectura y admin.html
+
+2 agosto 2018
+Problemas para hoy
+    Lograr conectar la pagina de admin con las funciones de lectura y promedio de las bd
+    Hacer que a su vez pase estos datos a
+        Para esto tengo que usar una funcion ajax que proccese los datos y los devuelva,
+        Quiza que me deje manipularlos y sobre todo que me deje activar e introduccir los promedios
+
+Conclusion:
+    Logre que la pagina de adminitrador pueda contartar a la de promedios y obtener sus resultados
+
+Para manana
+    Tengo que hacer que los datos que recibe admin esten bien ordenados, en vez de solo tirar la lista
+            - o quiza ni si quiera mostrar esos datos y simplemente una vez que se seleccionen esos datos
+              Se pasen directamente a al programa de EL ESTADO DEL TIEMPO y la aplicacion comience a funcionar
+    ...................... Soluciones .....................................................................
+        - Presionando directamente el boton y pasando los datos
+                - Cuando la bd se lea entonces regresara los datos a admin y mostrara que EL ESTADO DEL TIEMPO esta en linea
+                    Esto se logra
+                    Haciendo que la funcion 'lec' mande directamente los promedios a    EL ESTADO DEL TIEMPO
+                            Por lo mismo habra que proteger el programa para que pase los datos indicados
+                            DE MOMENTO solamente utilizaremos los datos de  'DEFAULT'   al menos por ahora
+
+
+
+    Hacer una funcion que envie TOME estos datos y los introdusca en la funcion ESTADO DEL METRO
+        Va a ser una fusion de celery pero que vaya aceptando datos de tiempo real de nes
+            Muchas cosas para manana pero todo va viento en popa
+
+---- IDEA ----
+La funcion de EL ESTADO DEL METRO
+    Debe recibir datos en forma de paquete, o lista o json
+    De esta manera recibira los datos y una vez que los tenga preguntara
+        si se quiere empezar a enviar las idicaciones
+
+    1 Datos
+        - Paquete de datos set: Son los datos con los promedios que seran utilizados
+            Reglas - habra una variable globar que sera activada por estos datos -
+                Si el programa no tiene estos datos enviar a admin.html un error
+                Una vez que tenga estos datos estara listo para comenzar el envio al index.html
+
+        - Paquete de datos Sen: Son los datos que recibira de la funcion nes
+            Reglas: Ignorara estos datos si no esta activada esta variable global
+                Una vez que tenga las intruciones es decir los promedios comenzara
+                    -------- Comenzara a tomar el tiempo cuando el primer sensor sea activado
+                             a partir de ese momento activara una alarma para cada sensor
+                    NO SE si sea necesario esperar que el sensor 1/3 sea activado o simplemente contar
+                        comenzar la alarma cuando sea activado el sensor correspondiente !@#$#@!@#$#@!
+
+    2 Procesamiento de alarmas
+
+        en base a que tan lento se esten cumpliendo las alarmas sera el calculo y el envio de
+        la variable de comportamiento a index.html
+
+----------------------------------------
+3 agosto 2018
+Para hoy
+    Diseñar la funcion EL ESTADO DEL TIEMPO al menos el esqueleto, mañana editamos la funcion de stopwatch y la funcion que evaluara esos tiempo
+        Funcionamiento principal
+        Debe seguir en funcionmiento siempre, excepto cuando le ponga stop - implementar funcion de stop en admin
+        Debe aceptar datos y saberlos procesar va recibir datos tanto de lectura como de nes de este ultimo constantemente
+
+        De acuerdo con estos datos
+        1 recibir estos datos y configurarse con estos datos
+        2 recibir datos de nes y en base a ellos para el stopwatch
+
+        STOPWATCH funcion
+        1 Parar cada cuando reciba datos de nes
+
+        POST STOPWATCH
+        Ir evaluando los tiempo en tiempo real se podra decir que sera un segundo stopwatch que
+            Que la maquina sepa cuanto tiempo se esta exediendo o cuando tiempo se esta adelantando
+            Recibira dos tipos de warnings
+                1 Cuando el tiempo de la señal se acorte
+                    Cambiara de estado a estdo muy bueno
+                2 Cuando el tiempo de la senal se exeda en este caso
+                    Ira cambiando de estado cada vez que por ejemplo cada 10 segundos
+
+            De alguna manera evaluara los stopwatch de cada linea
+
+        MANERAS DE IMPLEMENTAR EL STOPWATCH
+
+            En base a promedios se crearan tiempos de espera
+                Estos tiempos de espera seran horas por decirlo asi
+                cuando el sensor envie su señal se comparara la '''HORA RECIBIDA''' contra la '''HORA ESPERADA'''
+                    se hara una resta de la HORA RECIBIDA - HORA ESPERADA =
+                        si el resultado es un numero menor a un valor x digamos 10 segundos, entonces arrojara un estado X
+                        si el resultado es un numero menor a un valor x digamos 20 segundos, entonces arrojara un estado y
+                        si el resultado es un numero menor a un valor x digamos 10 segundos, entonces arrojara un estado z
+
+                        Si el resultado es un numero negativo entonces  sera un hora otro estado por ejemplo estado super bien
+
+            Una vez que obtenga ese resultado rellenara nuevo '''HORA ESPERRADA''' y esperar de nuevo
+
+
+
+            PROBLEMAS DE ESTA IMPLEMENTACION
+                Si no recibe nunca un valor de los sensores entonces jamas tendre mis estados
+                    Buscar una funcion tipo alarma que cambie mi estado
+
+        IMPORTANTE
+            Implementar una funcion que no permita errores a la hora de recibir una señal no esperada
+            Justo como la que ya tiene la funcion 'regis'
+
+
+
+6 agosto
+Hice el program tempo.py, sus extenciones son regis_t.py y desem.py
+#IMPORTANTE
+    encontre un error en bdfinal7, el linea 122 y 162 en helpers.py por si acaso
+
+7 agosto
+Logra hacer las funciones para registro de promedios y evaluacion de estos
+
+    Tengo que trasladar esto a un funcion del programa para que pueda entregar una
+    evaluacion segun el comportamiento de los trenes
+
+            Hacer una funcion que reciba paquetes
+            1 de promedios
+            2 De sensores
+                en base al programa 'admin.3' crear una nueva funcion en helpers.py que
+                pueda logre tomar esos datos y que pueda evaluarlos sin problema
+
+9 agosto
+Tengo que hacer que un programa reciba datos sobre los promedios y que ese  mismo pueda procesar
+esos promedios para hacer un estado del metro y tengo que revisar que celery lo
+lea si es que va a haber uso de celery
+
+15 agosto 2018
+Tengo que juntar los codigos de - Admin.4 con el codigo de socket.6 para lograr hacer una primera version
+
+    Crear una proteccion para evitar que los sensores manden senales por error y puedan danar la evaluacion
+    debe ser un protecion como la que ya tiene la funcion regis para evitar registrar un sensor que no
+    se supone que deberia registra movimiento - debe ser una funcion similar para que no afecte la evaluacion
+    de ningunan manera pero no se me ocurre
+
+    1 Leer bd y sacar promedios
+    2 Leer bd y obtener rondas
+
+        En base a que a tenemos las rondas crear un if
+            En plan si un sensor que no se espera es activado simplemente ignorarlo
+            y no evaluarlo
+        si es un sensor que se espera crear una evaluacion para dicho sensor y
+
+    4 Procesar los datos
+    5 Emitir al usuario
+
+funcion nes
+    1 registrar datos en la bd - Esto lo hara en cuanto se ejecute flask
+     ------Cuando admin active funcion evaluacion pasara esto --------------------------------
+     1 Leera la bd para obtener los promedios que seran almacenados en una var. global
+     2 Leera las rondas y lo guardara en una segunda var global
+        IF Ahora con las rondas leidas cuando llegue una senal de sensor la primero
+        Si la senal es esperada conforme a las rondas
+            Llamara a Evaluacion - evaluacion devolvera una lista / 1 - Evaluacion Sen, 2 - hora_esperada sen
+                Evaluacion enviara los resultados
+        ----------- Funcion evaluacion tomara 5 variables ---------
+        1 - Dir, 2 - Sensor, 3 - promedio, 4 hora_esp, 5 rondas
+            Si hora_esp = 0 utilizara promedio calculara hora_esp
+                El resultado sera calificacion - y hora_esp
+            si tuvo que calcular lo hora_esp por primera vez arrojar 's' - sin suficiente informacion
+
+        si la senal no es esperada lo ingorara completamente
+
+    3 Con la informacion que arrojo esta ultima funcion se agregara a una lista de 3 datos
+        Esta funcion evaluara los tres resultados
+            si la mayoria son a el metro va bien o si la mayoria va mal el metro va  mal
+
+

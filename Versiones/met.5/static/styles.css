@@ -1,0 +1,123 @@
+/* fill viewport, hide scroll bar */
+html, body
+{
+    height: 100%;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+/* fill viewport */
+div.container-fluid, .jumbotron
+{
+    height: 100%;
+}
+
+/* Diseno de los estados */
+.estados {
+    background-color: white;
+    border: 2px solid rgb(79,185,227);
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+
+/* ensure content is below navbar */
+div.container-fluid
+{
+    padding-top: 100px;
+}
+
+/* remove padding within container */
+div.container-fluid
+{
+    padding-left: 0;
+    padding-right: 0;
+}
+
+/* fill viewport */
+div.container-fluid, .jumbotron
+{
+    height: 100%;
+}
+
+/* split viewport */
+div.row
+{
+    height: 50%;
+    margin-left: 0;
+    margin-right: 0;
+    overflow: scroll;
+}
+
+
+/* Colores para el fondo */
+.deleted
+{
+    background-color: #f00;
+}
+.inserted
+{
+    background-color: #0f0;
+}
+.substituted
+{
+    background-color: #ff0;
+}
+
+
+
+/*titulos de index*/
+.up{
+    text-align: center;
+    color: white;
+}
+
+/*Texto de lineas*/
+.let_linea{
+    font-size: 20px;
+    text-align: center;
+}
+
+/*Texto de dir*/
+.let_dir{
+    font-size: 16px;
+    text-align: center;
+}
+
+/*Texto de respuesta*/
+.let_res{
+    font-size: 16px;
+    text-align: center;
+}
+
+/*imagenes centradas*/
+.centro{
+    margin: auto;
+    width: 25%;
+    border: 2px gray;
+    padding: 3px;
+}
+
+
+
+/*imagenes centradas*/
+.centro1{
+    margin: auto;
+    width: 25%;
+    border: 1px solid gray;
+    padding: 70px;
+}
+
+.imagen {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.blocktext {
+    margin-left: auto;
+    margin-right: auto;
+    width: 8em
+}

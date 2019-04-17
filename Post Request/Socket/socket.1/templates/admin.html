@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <title> Admin Metro </title>
+  </head>
+
+<body>
+
+     <!--Presentacion-->
+    <h1> Promedios </h1>
+
+    <img id="myImage1" src="/static/perro.jpg" width="200" height="200">
+
+    <h2>    Hacer click para obtener los promedios     </h2>
+
+    <!--botton-->
+    <p> <button onclick="defa()"> Default </button>
+        <button onclick="now()"> Now </button> </p>
+
+     <!--Este span esta guardando el lugar para conectar el resultado-->
+     <p> Resultados </p>
+    <p> <span id=resultados>  ---  </span> </p>
+
+    <!--   json jquery  -  AJAX -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!--script-->
+
+    <script type=text/javascript>
+
+        function defa() {
+            $.getJSON('/lec', {
+             // Enviando default
+            a: "default"
+            },
+            // Obteniendo los datos de vuelta, modificando todas las variables posibles queda asi
+            function(data) {
+                // Los conecta con la funcion resultados
+                $("#resultados").text(data.pro);
+            });
+          return false;
+        }
+
+        function now() {
+            $.getJSON('/lec', {
+             // Enviando default
+            a: "42"
+            },
+            // Obteniendo los datos de vuelta, modificando todas las variables posibles queda asi
+            function(data) {
+                // Los conecta con la funcion resultados
+                $("#resultados").text(data.pro);
+            });
+          return false;
+        }
+
+
+    </script>
+
+  </body>
+
+</html>

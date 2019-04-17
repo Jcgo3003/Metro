@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title> Estado Metro </title>
+  </head>
+
+<body>
+     <!--Presentacion-->
+    <h1> ESTADO DEL METRO  </h1>
+    <img id="myImage1" src="/static/perro.jpg" width="300" height="300">
+    <h2>      Prueba 1    </h2>
+
+     <!--Este span esta guardando el lugar para conectar el resultado-->
+    <p> El estado es  </p>
+    <p> <span id=resultados>  ---  </span> </p>
+
+    <!--   json jquery  -  AJAX -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <!--script-->
+
+    <script type=text/javascript>
+
+        function defa() {
+            $.getJSON('/nes', {
+             // Enviando default / no necesito enviar nada
+            // a: 4
+            },
+            // Obteniendo los datos de vuelta, modificando todas las variables posibles queda asi
+            function(data) {
+                // Los conecta con la funcion resultados
+                $("#resultados").text(data.pro);
+            });
+
+          // Actualizar cada 2 segundos
+            setTimeout(function() {
+                        defa();
+            }, 2000);
+
+          return false;
+        }
+        // Para comenzar la funcion al arranque
+        window.onload = defa;
+
+    </script>
+
+  </body>
+
+</html>

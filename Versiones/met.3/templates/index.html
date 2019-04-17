@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <title> State of colors </title>
+  </head>
+<body>
+    <p> The color state is  </p>
+
+     <!-- Conectando los resultados que llegan desde emit /read -->
+    <p> A <</p>
+    <p> <span id=resultados_a>  _---_  </span> </p>
+    <p> B <</p>
+    <p> <span id=resultados_b>  _---_  </span> </p>
+
+    <!--   json jquery  -  AJAX -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min.js"></script>
+
+    <!--Funcion javascript-->
+    <script type=text/javascript>
+        $(document).ready(function(){
+        // Conectando al servidor
+        var socket = io.connect('http://' + document.domain + ':' + location.port + '/test');
+        var color;
+
+        // Recibiendo datos del servidor
+        socket.on('update_a', function(msg) {
+            color_a = msg.estado
+            $('#resultados_a').text(color_a);
+        });
+
+        // Recibiendo datos del servidor
+        socket.on('update_b', function(msg) {
+            color_b = msg.estado
+            $('#resultados_b').text(color_b);
+        });
+    });
+    </script>
+
+  </body>
+</html>
